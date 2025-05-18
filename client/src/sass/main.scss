@@ -33,6 +33,7 @@
             
             h1 {
                 font-size: 1.5em;
+                cursor: pointer;
                 
                 span { color: #fb0 }
             }
@@ -278,4 +279,91 @@ footer {
     height: 100%;
     position: fixed;
     background: #fff;
+}
+
+
+
+
+
+#course-page {
+    .course-page-header {
+        display: flex;
+        width: 100%;
+        margin: 3rem 0;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        h3 {
+            color: #555;
+            max-width: 500px;
+            font-weight: 500;
+            text-align: center;
+            margin: .5rem 0;
+        }
+
+        .input-area {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            input {
+                margin: auto;
+                width: 100%;
+                padding: 1rem;
+                max-width: 500px;
+                border-radius: 50rem;
+                border: 1px solid #ddd;
+            }
+        }
+    }
+
+
+    .course-page-content {
+        gap: 1rem;
+        margin: auto;
+        display: grid;
+        max-width: 1280px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    
+        .course {
+            box-shadow: 0 0 1rem #ddd;
+
+            .cover {
+                width: 100%;
+                height: 200px;
+                background: #ddd;
+            }
+
+            .info {
+                padding: 1rem;
+                display: grid;
+
+                p {
+                    color: #555;
+                    margin: .3rem 0;
+                }
+
+                h1 {
+                    color: #fb0;
+                    margin: .5rem 0;
+                }
+
+                button {
+                    color: #fb0;
+                    padding: 1rem;
+                    font-size: .9em;
+                    font-weight: 600;
+                    background: none;
+                    border: 1px solid #fb0;
+                    
+                    &:hover {
+                        background: #fb0;
+                    }
+                }
+
+            }
+        }
+    }
 }
