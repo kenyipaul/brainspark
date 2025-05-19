@@ -7,6 +7,9 @@ import About from "../views/about";
 import Courses from "../views/courses";
 import UserDashboard from "../views/user-dashboard";
 import AdminDashboard from "../views/admin-dashboard";
+import Account from "../views/user-dashboard/account";
+import Mycourses from "../views/user-dashboard/myCourses";
+import Security from "../views/user-dashboard/security";
 
 export const router = createBrowserRouter([
     {
@@ -39,7 +42,7 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: "/admin/",
-                        element: <>ACCOUNT</>
+                        element: <Account/>
                     },
                     {
                         path: "/admin/courses",
@@ -51,7 +54,7 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "/admin/security",
-                        element: <>SECURITY</>
+                        element: <Security/>
                     }
                 ]
             },
@@ -61,15 +64,15 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         path: "/user/",
-                        element: <>ACCOUNT</>
+                        element: <Account/>
                     },
                     {
                         path: "/user/mycourses",
-                        element: <>MY COURSES</>
+                        element: <Mycourses/>
                     },
                     {
                         path: "/user/security",
-                        element: <>SECURITY</>
+                        element: <Security/>
                     }
                 ]
             }
