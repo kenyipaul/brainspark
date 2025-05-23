@@ -10,6 +10,7 @@ import AdminDashboard from "../views/admin-dashboard";
 import Account from "../views/user-dashboard/account";
 import Mycourses from "../views/user-dashboard/myCourses";
 import Security from "../views/user-dashboard/security";
+import ModuleContent from "../views/user-dashboard/Modules";
 
 export const router = createBrowserRouter([
     {
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
                         element: <Security/>
                     }
                 ]
+            },
+            {
+                path: "/Course/vidoes",
+                element: <ModuleContent/>
             }
         ]
     }
