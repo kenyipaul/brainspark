@@ -1,0 +1,237 @@
+@mixin basicStyles{
+    display: flex;
+    padding: 2rem 3rem;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+@mixin inputStyles{
+    width: 100%;
+    padding: 1rem;
+    font-size: 1em;
+    background: none;
+    border-radius: .6rem;
+    border: 2px solid #a9a9a9;
+}
+
+@mixin buttonStyles{
+    border: none;
+    font-weight: 600;
+    border-radius: 7px;
+    background: #FFBB00;
+    padding: .8rem 1.2rem;
+    cursor: pointer;
+}
+
+.admin-courses-section{
+    width: 100%;
+
+    main{
+        display: grid;
+        grid-gap: 20px;
+        padding-bottom: 1rem;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    }
+}
+
+@media (min-width: 1280px) {
+    .admin-courses-section{
+
+        main{
+            display: grid;
+            grid-template-columns: repeat(3,minmax(300px, 1fr));
+        }
+    }
+}
+
+.card{
+    box-shadow: 5px 5px 20px #71717124;
+    img{width: 100%;}
+
+    .card-content{
+        padding: 1rem;
+        background-color: #fff;
+
+        p{padding: 1rem 0rem;}
+
+        article{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 1rem;
+
+            button{
+                font-weight: 600;
+                font-size: 1.1rem;
+                background: none;
+                padding: .8rem 2rem;
+
+            }
+            button:nth-child(1){
+                color: #FFBB00;
+                border: 1px solid #FFBB00;
+            }
+
+            button:nth-child(2){
+                color: #FF0053;
+                border: 1px solid #FF0053;
+            }
+        }
+    }
+}
+
+.add-course{
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    background-color: #00000070;
+    animation: upwards 1s ease-in-out;
+
+    @keyframes upwards {
+        0%{
+            scale: 0;
+            opacity: 0;
+        }
+        100%{
+            scale: 1;
+            opacity: 1;
+        }
+    }
+
+    img{
+        top: 4%;
+        right: 8%;
+        color: #fff;
+        cursor: pointer;
+        position: absolute;
+    }
+}
+
+#form-section {
+    @include basicStyles;
+
+    .form {
+        gap: 1rem;
+        width: 100%;
+        display: grid;
+        max-width: 450px;
+
+        .input-area-group {
+            gap: .5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .input-area {
+            gap: .3rem;
+            display: grid;
+
+            label {font-size: 1.1em;}
+            input {@include inputStyles;}
+        }
+        
+        p {
+            font-size: 1.1em;
+            
+            a {
+                color: #fb0;
+                font-weight: 900;
+                text-decoration: none;
+            }
+        }
+        
+        button {@include buttonStyles;}
+    }
+}
+
+#form-section-2{
+    @include basicStyles;
+    
+    .form {
+        gap: 1rem;
+        width: 100%;
+        display: grid;
+        
+        .all-content-holder{
+            display: flex;
+            flex-direction: column;
+            
+            .image-holder{
+                width: 100%;
+                display: flex;
+                margin-bottom: 1rem;
+                align-items: center;
+                border-radius: 10px;
+                padding: 5rem 12rem;
+                justify-content: center;
+                background-color: #a9a9a9;
+            }
+            
+            .inputgroup{
+                width: 100%;
+                
+                .input-section{
+                    gap: .5rem;
+                    display: flex;
+                    padding-bottom: 1rem;
+                    flex-direction: column;
+                    
+                    label {font-size: 1.1em;}
+                    input{@include inputStyles;}
+                }
+            }
+        }
+    }
+}
+
+.admin-students-section,.admin-courses-section{
+    width: 100%;
+    overflow: hidden;
+
+    .adminUnion{
+        display: flex;
+        margin-left: auto;
+        align-items: center;
+        margin-bottom: 2rem;
+        justify-content: space-between;
+
+        h1{font-size: 2.2rem;}
+        button{@include buttonStyles;}
+    }
+    
+    .table_section{
+        overflow-x: auto;
+
+        table{
+            width: 100%;
+            border-collapse: collapse ;
+            
+            thead{
+                background-color: #F2F2F2;
+                tr{border: none;}
+            }
+
+            tr{
+                border-bottom: 1px solid #00000050;
+            
+                td, th {
+                    padding: 1rem;
+                    text-align: start;
+                }
+                
+                button{
+                    @include buttonStyles;
+                    border-radius: 1px;
+                    background: none;
+                    color: #FF0053;
+                    border: 1px solid #FF0053;
+                }
+            }
+        }
+    }
+}
