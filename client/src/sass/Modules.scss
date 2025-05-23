@@ -118,4 +118,91 @@
       background-color: #dce0e2;
       border-bottom: 1px solid #c0c4c6;
   }
+
+  @media (width > 319px) and (width < 400px) {
+    .container-course {
+      margin: 0px 0px 0px 0rem;
+      padding: 0px 16px 0px 20px;
+    }
+  
+    .video {
+      height: 15rem;
+    }
+  
+    .context-header h3 {
+      font-size: 1.2em;
+    }
+  
+    .context-content {
+      font-size: 0.9em;
+    }
+  
+    .icon-wrapper {
+      margin-left: 10px;
+    }
+  
+    .icon {
+      width: 1rem;
+      height: 1rem;
+    }
+    
+  }
+
+  @media (width > 420px) and (width < 769px) {
+    .container-course {
+      margin: 0px 0px 0px 0rem;
+      padding: 0px 16px 0px 20px;
+    }
+  
+    .video {
+      height: 20rem;
+    }
+  
+    .context-header h3 {
+      font-size: 1.2em;
+    }
+  
+    .context-content {
+      font-size: 0.9em;
+    }
+  
+    .icon-wrapper {
+      margin-left: 10px;
+    }
+  
+    .icon {
+      width: 1rem;
+      height: 1rem;
+    }
+    
+  }
+  
+@media (width >= 800px) and (width < 1300px) {
+    .container-course {
+      margin: 0px 0px 0px 0rem;
+      padding: 0px 20px;
+    }
+  
+    .video {
+      height: 28rem;
+    }
+  
+    .context-header h3 {
+      font-size: 1.1em;
+    }
+  
+    .context-content {
+      font-size: 0.8em;
+    }
+  
+    .icon-wrapper {
+      margin-left: 5px;
+    }
+  
+    .icon {
+      width: 0.8rem;
+      height: 0.8rem;
+    }
+    
+  }
   
