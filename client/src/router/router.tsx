@@ -10,6 +10,8 @@ import AdminDashboard from "../views/admin-dashboard";
 import Account from "../views/user-dashboard/account";
 import Mycourses from "../views/user-dashboard/myCourses";
 import Security from "../views/user-dashboard/security";
+import AdminCoursesSection from './../views/admin-dashboard/Admin_Courses_Section';
+import AdminStudentsSection from "../views/admin-dashboard/Admin_Students_Section";
 import ModuleContent from "../views/user-dashboard/Modules";
 
 export const router = createBrowserRouter([
@@ -47,11 +49,11 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "/admin/courses",
-                        element: <>COURSES</>
+                        element: <AdminCoursesSection/>
                     },
                     {
                         path: "/admin/students",
-                        element: <>STUDENTS</>
+                        element: <AdminStudentsSection/>
                     },
                     {
                         path: "/admin/security",
