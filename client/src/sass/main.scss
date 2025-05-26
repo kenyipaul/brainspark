@@ -1,9 +1,15 @@
+@font-face {
+    font-family: roboto;
+    src: url(/Roboto.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "system-ui";
+    font-family: roboto,  "system-ui";
 }
+
 
 #app {
     display: flex;
@@ -40,7 +46,7 @@
 
             ul {
                 gap: 3rem;
-                display: flex;
+                display: none;
                 align-items: center;
             }
             li {
@@ -75,25 +81,117 @@
             gap: .5rem;
             display: flex;
 
-            button {
-                font-size: 1em;
-                background: none;
-                border-radius: .5rem;
-                padding: .5rem 0;
+            .buttons {
+                display: none;
+
+                button {
+                    font-size: 1em;
+                    background: none;
+                    border-radius: .5rem;
+                    padding: .5rem 0;
+                    
+                    a {
+                        color: #000;
+                        padding: .5rem 1rem;
+                        text-decoration: none;
+                    }
+    
+                    &:nth-child(1) {
+                        border: 1px solid #999;
+                    }
+    
+                    &:nth-child(2) {
+                        background: #fb0;
+                        border: 1px solid #fb0;
+                    }
+                }
+            }
+
+            .menuBtn {
+                cursor: pointer !important; 
+            }
+
+            .menu {
+                top: 0;
+                right: 0;
+                width: 250px;
+                height: 100dvh;
+                background: #fff;
+                position: fixed;
+                display: flex;
+                padding: 1rem;
+                flex-direction: column;
+                border-left: 1px solid #ddd;
+                justify-content: space-between;
+
                 
-                a {
-                    color: #000;
-                    padding: .5rem 1rem;
-                    text-decoration: none;
-                }
 
-                &:nth-child(1) {
-                    border: 1px solid #999;
-                }
+                div {
+                    &:nth-child(1) {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
 
-                &:nth-child(2) {
-                    background: #fb0;
-                    border: 1px solid #fb0;
+                        .closeBtn {
+                            cursor: pointer;
+                            margin: 1.5rem 1rem;
+                        }
+
+                        
+
+                        h1 {
+                            margin-left: 1rem;
+                            font-size: 1.5em;
+                            span{ color: #fb0 }
+                        }
+
+                        ul {
+                            width: 100%;
+                            display: grid;
+                            margin-top: 1rem;
+
+                            li {
+                                padding: 1rem;
+                                list-style: none;
+
+                                a {
+                                    color: #000;
+                                    text-decoration: none;
+
+                                    &:hover { color: #fb0; }
+                                }
+                            }
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        gap: .5rem;
+                        display: grid;
+
+                        a {
+                            color: #000;
+                            text-decoration: none;
+                        }
+
+                        button {
+                            border: none;
+                            padding: 1rem;
+                            font-size: 1em;
+                            cursor: pointer;
+                            border-radius: .6rem;
+
+                            &:nth-child(1) {
+                                color: #555;
+                                background: none;
+                                border: 1px solid #ddd;
+                            }
+
+                            &:nth-child(2) {
+                                color: #fff;
+                                background: #fb0;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -103,19 +201,25 @@
 
 #main {
     margin: auto;
-    padding: 0 1rem;
+    // padding: 0 1rem;
     max-width: 1366px;
 
     .banner {
         width: 100%;
-        height: 500px;
+        // height: 500px;
         display: flex;
         aspect-ratio: 1/1;
         align-items: center;
         // border-radius: 1rem;
         background: #FAF0D3;
         justify-content: space-evenly;
-    
+        flex-direction: column;
+
+        @media (min-width: 900px) {
+            height: 550px;
+            flex-direction: row;
+        }
+
         img {
             width: 30rem;
             height: 30rem;
@@ -127,16 +231,17 @@
             display: grid;
 
             h1 {
-                font-size: 3em;
                 max-width: 500px;
+                font-size: clamp(2em, 5vw, 2.5em);
             }
 
             p {
-                font-size: 1.1em;
+                font-size: 1em;
                 max-width: 500px;
             }
 
             h3 {
+                display: none;
                 span { 
                     color: #fb0; 
                     margin: 0 .4rem;
@@ -149,9 +254,9 @@
                     border: none;
                     width: 400px;
                     outline: none;
-                    padding: 1rem;
                     font-size: 1em;
-                    border-radius: .5rem;
+                    padding: 1rem 1.5rem;
+                    border-radius: 50rem;
                 }
             }
         }
@@ -159,7 +264,7 @@
 
 
     .content-container {
-        padding: 2rem 0;
+        padding: 2rem 1rem;
 
         .content-header {
             padding: 1rem 0;
@@ -167,7 +272,8 @@
         .content {
             gap: 1rem;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            // grid-template-columns: 1fr 1fr 1fr 1fr;
 
             .course {
                 aspect-ratio: 1/1;
@@ -181,11 +287,11 @@
 footer {
     padding: 1rem;
     display: flex;
-    background: #fb0;
     max-width: 1366px;
     margin: auto;
     align-items: center;
     justify-content: center;
+    border-top: 1px solid #ddd;
 }
 
 
@@ -272,30 +378,34 @@ footer {
 }
 
 #course-page {
+    padding: 1rem;
+
     .course-page-header {
-        display: flex;
+        gap: .5rem;
         width: 100%;
-        margin: 3rem 0;
-        align-items: center;
-        justify-content: center;
+        display: flex;
+        margin: 3rem auto;
+        max-width: 1280px;
+        // align-items: center;
+        // justify-content: center;
         flex-direction: column;
 
         h3 {
             color: #555;
             max-width: 500px;
             font-weight: 500;
-            text-align: center;
+            // text-align: center;
             margin: .5rem 0;
         }
 
         .input-area {
-            width: 100%;
+            // width: 100%;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            // align-items: center;
+            // justify-content: center;
             
             input {
-                margin: auto;
+                // margin: auto;
                 width: 100%;
                 padding: 1rem;
                 max-width: 500px;
@@ -314,7 +424,9 @@ footer {
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     
         .course {
-            box-shadow: 0 0 1rem #ddd;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 0 1rem #eee;
 
             .cover {
                 width: 100%;
@@ -334,17 +446,21 @@ footer {
                 h1 {
                     color: #fb0;
                     margin: .5rem 0;
+                    font-size: 1.5em;
                 }
 
                 button {
                     color: #fb0;
                     padding: 1rem;
                     font-size: .9em;
+                    cursor: pointer;
                     font-weight: 600;
                     background: none;
+                    border-radius: .6rem;
                     border: 1px solid #fb0;
                     
                     &:hover {
+                        color: #000;
                         background: #fb0;
                     }
                 }
