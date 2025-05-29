@@ -170,6 +170,14 @@
                 padding: 5rem 12rem;
                 justify-content: center;
                 background-color: #a9a9a9;
+
+                input{
+                    color: #ffffff;
+                }
+                
+                input::file-selector-button{
+                    @include buttonStyles;
+                }
             }
             
             .inputgroup{

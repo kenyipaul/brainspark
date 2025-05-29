@@ -68,26 +68,64 @@ export const AddCourse = ({ Click,FlotingSection }: AddCourseProps) => {
 
 
 const CourseAddition = () =>{
+  const [uploadImage, setUploadImage] = useState<File | null>(null);
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      setUploadImage(files[0]);
+    }
+  };
+
+  const reader = new FileReader();
+  if (uploadImage) {
+    reader.readAsDataURL(uploadImage);
+  }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.target as typeof event.target & {
+      courseTitle: { value: string };
+      courseSubTitle: { value: string };
+    };
+    courseData.unshift({
+      courseImage: reader.result as string,
+      courseTitle: form.courseTitle.value,
+      courseSubTitle: form.courseSubTitle.value,
+    });
+    setUploadImage(null);
+    (event.target as HTMLFormElement).reset();
+  }
+
   return (
     <div id="form-section-2">
       <div className="form">
         <h1>Upload Course</h1>
-        <section className="all-content-holder">
-          <div className="image-holder" >
-            <button>Upload Image</button>
+        <form className="all-content-holder" onSubmit={handleSubmit}>
+          <div
+            className="image-holder"
+            style={{
+              background: uploadImage
+                ? `url(${URL.createObjectURL(uploadImage)})`
+                : undefined,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <input type="file" onChange={handleImageUpload} />
           </div>
           <div className="inputgroup">
               <div className="input-section">
                   <label htmlFor="Course Title">Course Title</label>
-                  <input type="text" name="" id="" placeholder="Course Title"/>
+                  <input type="text" name="courseTitle" id="courseTitle" placeholder="Course Title"/>
               </div>
               <div className="input-section">
                   <label htmlFor="Course Sub-Title">Course Sub-Title</label>
-                  <input type="text" name="" id="" placeholder="Course Sub-Title"/>
+                  <input type="text" name="`courseSubTitle`" id="courseSubTitle" placeholder="Course Sub-Title"/>
               </div>
           </div>
-          <button>Upload Course</button>
-        </section>
+          <button type="submit">Upload Course</button>
+        </form>
       </div>
     </div>
   )
