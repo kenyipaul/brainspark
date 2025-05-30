@@ -80,7 +80,7 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path: "/Course/vidoes",
+                path: "/Course/videos",
                 element: <ModuleContent/>
             }
         ]

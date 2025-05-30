@@ -6,7 +6,7 @@ export default function Security() {
       <div className="account-info">
         <div className="account-profile"></div>
         <div className="account-names">
-          <h2>John Doe</h2>
+          <h2>Jane Doe</h2>
           <h3>John@gmail.com</h3>
         </div>
       </div>
@@ -25,8 +25,6 @@ export default function Security() {
             <input type="email" id="email" />
           </div>
           <button type="submit">Change Password</button>
-
-       
         </form>
       </div>
     </div>
