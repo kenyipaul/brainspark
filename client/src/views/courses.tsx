@@ -26,11 +26,12 @@ function Course() {
         <div className="course">
             <div className="cover"></div>
             <div className="info">
-                <h3>Data Structures & Algorithm</h3>
-                <p>Fundamentals using C++</p>
-                <h1>$15.55</h1>
-
-                <button>Register Now</button>
+                <h1>Data Structures & Algorithm</h1>
+                <p>Master modern web development by building dynamic and interactive user interfaces with React.js.</p>
+                <div className="bottom-bar">
+                    <h3>$15.55</h3>
+                    <button>Enroll Now</button>
+                </div>
             </div>
         </div>
     )
