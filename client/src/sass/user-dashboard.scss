@@ -1,3 +1,5 @@
+@use "./global" as *;
+
 .user-dashboard{
     width: 100%;
     display: flex;
@@ -11,7 +13,7 @@
         p{
             cursor: pointer;
             &:hover{
-                color: #FFBB00;
+                color: $primary-theme;
             }
         }
         .logout-message{
@@ -56,19 +58,13 @@
                 margin-top: 1rem;
 
                 button{
-                    background: #fb0;
                     color: #000;
+                    background: $primary-theme;
                     padding: .5rem 1rem;
                     border-radius: .5rem;
                     border: none;
                     font-size: 1.2em;
                     cursor: pointer;
-
-                    // &:hover{
-                    //     background: rgb(232, 180, 37);
-                    //     transition: .5s ease;
-                        
-                    // }
                 }
             }
 
@@ -94,12 +90,12 @@
                     color: #000;
 
                     &:hover{
-                        color: #FFBB00;
+                        color: $primary-theme;
                     }
 
                 }
                 &.active a { 
-                color: #fb0; 
+                color: $primary-theme; 
                 font-weight: 600;
                 }
             }
@@ -205,12 +201,12 @@
                 font-size: 1.2em;
 
                 &:focus{
-                    border: 1px solid #fb0;
+                    border: 1px solid $primary-theme;
                 }
             }
         }
         button{
-            background: #fb0;
+            background: $primary-theme;
             color: #000;
             padding: .5rem 1rem;
             border-radius: .5rem;
@@ -269,12 +265,12 @@
                 font-size: 1.2em;
 
                 &:focus{
-                    border: 1px solid #fb0;
+                    border: 1px solid $primary-theme;
                 }
             }
         }
         button{
-            background: #fb0;
+            background: $primary-theme;
             color: #000;
             padding: .5rem 1rem;
             border-radius: .5rem;
@@ -335,7 +331,7 @@
         }
         a{
             text-decoration: none;
-            color: #fb0;
+            color: $primary-theme;
             font-weight: bold;
 
             &:hover{
@@ -343,7 +339,7 @@
             }
         }
         button{
-            background: #fb0;
+            background: $primary-theme;
             color: #000;
             padding: 1rem ;
             border-radius: .5rem;

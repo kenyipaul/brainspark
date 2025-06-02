@@ -1,0 +1,25 @@
+@font-face {
+    font-family: roboto;
+    src: url(/Roboto.ttf);
+}
+
+$primary-theme: #fa8072;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: roboto,  "system-ui";
+}
+
+#app {
+    display: flex;
+    height: 100dvh;    
+    overflow: hidden;
+    flex-direction: column;
+
+    #main-page-content {
+        height: 100%;
+        overflow-y: scroll;
+    }
+}
