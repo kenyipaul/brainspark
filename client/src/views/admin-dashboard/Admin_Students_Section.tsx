@@ -1,4 +1,3 @@
-import {AddCourse} from './Admin_Courses_Section'
 import { Link } from 'react-router-dom'
 import { usersData } from './cardsData'
 import "/src/sass/admin-course.scss"
@@ -16,7 +15,7 @@ const AdminStudentsSection = () => {
       <section className='adminUnion'>
         <h1>Students</h1>
         <button onClick={toggleAddCourse}>Add Student</button>
-        {showAddCourse && <AddCourse Click={toggleAddCourse} FlotingSection={RegisterStudent}/>}
+        {showAddCourse && <RegisterStudent Close={toggleAddCourse}/>}
       </section>
       <div className="table_section">
         <table className='table'>
@@ -68,31 +67,38 @@ const UserTable = ({id,profile,firstName,lastName,email,action}:Props) => {
   )
 }
 
-const RegisterStudent = () => {
+type RegisterStudentProps = {
+  Close: () => void;
+};
+
+const RegisterStudent = ({ Close }: RegisterStudentProps) => {
   return (
-      <div id="form-section">
-        <div className="form">
-            <h1>Create Account</h1>
-            <div className="input-area-group">
-                <div className="input-area">
-                    <label htmlFor="first_name">First Name</label>
-                    <input type="text" name="" id="" />
+    <div className='flaoting-section' onClick={() => { Close() }}>
+          <div id="form-section" onClick={(e) => e.stopPropagation()}>
+            {/* <img src="/images/close-bold-svgrepo-com.svg" alt="" onClick={Close} style={{width:"3rem",height:"3rem"}}/> */}
+            <div className="form">
+                <h1>Create Account</h1>
+                <div className="input-area-group">
+                    <div className="input-area">
+                        <label htmlFor="first_name">First Name</label>
+                        <input type="text" name="" id="" />
+                    </div>
+                    <div className="input-area">
+                        <label htmlFor="last_name">Last Name</label>
+                        <input type="text" name="" id="" />
+                    </div>
                 </div>
                 <div className="input-area">
-                    <label htmlFor="last_name">Last Name</label>
-                    <input type="text" name="" id="" />
+                    <label htmlFor="email">Email</label>
+                    <input type="email" name="" id="" />
                 </div>
+                <div className="input-area">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" name="" id="" />
+                </div>
+                <p>I already have an account? <Link to="/login">login here</Link></p>
+                <button>Sign Up</button>
             </div>
-            <div className="input-area">
-                <label htmlFor="email">Email</label>
-                <input type="email" name="" id="" />
-            </div>
-            <div className="input-area">
-                <label htmlFor="password">Password</label>
-                <input type="password" name="" id="" />
-            </div>
-            <p>I already have an account? <Link to="/login">login here</Link></p>
-            <button>Sign Up</button>
         </div>
     </div>
   )

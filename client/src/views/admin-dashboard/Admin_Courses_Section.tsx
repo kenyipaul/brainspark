@@ -14,7 +14,7 @@ const AdminCoursesSection = () => {
       <section className='adminUnion'>
         <h1>Courses</h1>
         <button onClick={toggleAddCourse}>Add New Course</button>
-        {showAddCourse && <AddCourse Click={toggleAddCourse} FlotingSection={CourseAddition}/>}
+        {showAddCourse && <CourseAddition Close={toggleAddCourse} />}
       </section>
       <main className="card-container">
         {
@@ -45,29 +45,15 @@ const Card = ({ courseImage, courseTitle, courseSubTitle }: CardProps) => {
         <p>{courseSubTitle}</p>
         <article>
           <button>Edit</button>
-          <button>Delete</button>
+          <button >Delete</button>
         </article>
       </div>
     </div>
   );
 };
 
-type AddCourseProps = {
-  Click: () => void;
-  FlotingSection: JSX.Element;
-};
 
-export const AddCourse = ({ Click,FlotingSection }: AddCourseProps) => {
-  return (
-    <div className="add-course">
-      <img src="/images/close-bold-svgrepo-com.svg" alt="" onClick={() => { Click()}} style={{width:"3rem",height:"3rem"}}/>
-      <FlotingSection/>
-    </div>
-  )
-}
-
-
-const CourseAddition = () =>{
+export const CourseAddition = ({ Close }: { Close: () => void }) =>{
   const [uploadImage, setUploadImage] = useState<File | null>(null);
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,35 +84,41 @@ const CourseAddition = () =>{
   }
 
   return (
-    <div id="form-section-2">
-      <div className="form">
-        <h1>Upload Course</h1>
-        <form className="all-content-holder" onSubmit={handleSubmit}>
-          <div
-            className="image-holder"
-            style={{
-              background: uploadImage
-                ? `url(${URL.createObjectURL(uploadImage)})`
-                : undefined,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-            }}
-          >
-            <input type="file" onChange={handleImageUpload} />
-          </div>
-          <div className="inputgroup">
-              <div className="input-section">
-                  <label htmlFor="Course Title">Course Title</label>
-                  <input type="text" name="courseTitle" id="courseTitle" placeholder="Course Title"/>
+    <div className="flaoting-section" onClick={() => { Close() }}>
+        <div id="form-section-2" onClick={(e) => e.stopPropagation()}>
+          <div className="form">
+            <h1>Upload Course</h1>
+            <form className="all-content-holder" onSubmit={handleSubmit}>
+              <div
+                className="image-holder"
+                style={{
+                  background: uploadImage
+                  ? `url(${URL.createObjectURL(uploadImage)})`
+                  : undefined,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                >
+                <label htmlFor="imageUpload">
+                  <h3>Upload Image</h3>
+                  <p>{uploadImage ? uploadImage.name : "Upload Course Image"}</p>
+                </label>
+                <input type="file" onChange={handleImageUpload} id="imageUpload"/>
               </div>
-              <div className="input-section">
-                  <label htmlFor="Course Sub-Title">Course Sub-Title</label>
-                  <input type="text" name="`courseSubTitle`" id="courseSubTitle" placeholder="Course Sub-Title"/>
+              <div className="inputgroup">
+                  <div className="input-section">
+                      <label htmlFor="Course Title">Course Title</label>
+                      <input type="text" name="courseTitle" id="courseTitle" placeholder="Course Title"/>
+                  </div>
+                  <div className="input-section">
+                      <label htmlFor="Course Sub-Title">Course Sub-Title</label>
+                      <input type="text" name="`courseSubTitle`" id="courseSubTitle" placeholder="Course Sub-Title"/>
+                  </div>
               </div>
+              <button type="submit">Upload Course</button>
+            </form>
           </div>
-          <button type="submit">Upload Course</button>
-        </form>
-      </div>
+        </div>
     </div>
   )
 }
