@@ -1,0 +1,24 @@
+POST http://localhost:5112/signup
+Content-Type: application/json
+
+{
+  "FirstName": "Ivan",
+    "LastName": "Smith",
+  "Password": "securepassword123",
+  "Email": "IvanSmith_92@gmail.com",
+  "Role": "Admin"
+}
+
+###
+DELETE  http://localhost:5112/users/4
+
+###
+GET  http://localhost:5112/users
+
+###
+PUT  http://localhost:5112/users/9/password
+Content-Type: application/json
+
+{
+    "NewPassword": "newpassword456"
+}
