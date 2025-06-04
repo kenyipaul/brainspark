@@ -1,0 +1,45 @@
+@use "./global" as *;
+
+#payment-page {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+
+    form {
+        gap: 1rem;
+        width: 100%;
+        display: grid;
+        max-width: 450px;
+
+        .input-area {
+            gap: .5rem;
+            display: grid;
+
+            input {
+                width: 100%;
+                padding: 1rem;
+                font-size: 1em;
+                background: none;
+                border-radius: .6rem;
+                border: 1px solid #ccc;
+            }
+        }
+
+        .input-group {
+            gap: 1rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        button {
+            border: none;
+            padding: 1rem;
+            font-size: .9em;
+            border-radius: .6rem;
+            background: $primary-theme;
+        }
+    }
+
+}
