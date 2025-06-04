@@ -21,7 +21,6 @@ namespace WebApiBackend.Models
         [Required]
         public string? Link { get; set; }
         
-        [Required]
-        public string? Roadmap { get; set; }
+        public List<int>? Subscribers { get; set; }
     }
 }

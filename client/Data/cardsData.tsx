@@ -4,19 +4,24 @@ export const courseData = [
   {
     courseImage: "/images/CourseImage.jpg",
     courseTitle: "Data Struture and Algorithms",
-    courseSubTitle: "Foundation using C++"
+    courseDescription: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique cupiditate repellendus dignissimos, repudiandae magni",
+    coursePrice: "10.00"
   },{
     courseImage: "/images/CourseImage.jpg",
     courseTitle: "Data Struture and Algorithms",
-    courseSubTitle: "Foundation using C++"
+    courseDescription: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique cupiditate repellendus dignissimos, repudiandae magni",
+    coursePrice: "10.00"
+
   },{
     courseImage: "/images/CourseImage.jpg",
     courseTitle: "Data Struture and Algorithms",
-    courseSubTitle: "Foundation using C++"
+    courseDescription: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique cupiditate repellendus dignissimos, repudiandae magni",
+    coursePrice: "10.00"
   },{
     courseImage: "/images/CourseImage.jpg",
     courseTitle: "Data Struture and Algorithms",
-    courseSubTitle: "Foundation using C++"
+    courseDescription: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique cupiditate repellendus dignissimos, repudiandae magni",
+    coursePrice: "10.00"
   },
 ]
 

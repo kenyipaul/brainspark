@@ -6,6 +6,11 @@ export default function UserDashboard() {
     const location = useLocation();
     const [isLoggedOut, setIsLoggedOut] = useState(false);
 
+    const logout = () => {
+      sessionStorage.removeItem("_user_data")
+      window.location.href = "/login"
+    }
+
     return (
         <div className="user-dashboard">
           <aside className="user-dashboard-content">
@@ -19,7 +24,7 @@ export default function UserDashboard() {
                     <div className="logout-message">
                       <h1>Are you sure you want to log out?</h1>
                       <div className="answer-buttons">
-                        <button onClick={() => window.location.href = "/login"}>Yes</button>
+                        <button onClick={logout}>Yes</button>
                         <button onClick={() => setIsLoggedOut(false)}>No</button>
                       </div>
                     </div>

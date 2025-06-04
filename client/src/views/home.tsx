@@ -8,10 +8,10 @@ export default function Home() {
                     <article>
                         <h1>What do you want to learn today?</h1>
                         <h3>Continue your learning journey with thousands of courses from world-class instructors</h3>
-                        <div className="input-area">
+                        {/* <div className="input-area">
                             <input type="text" placeholder="Search for courses" id="" />
                             <button>Search</button>
-                        </div>
+                        </div> */}
                         {/* <h4>Suggestion: <span>Data Structures</span> <span>Discrete Mathematics</span></h4> */}
                     </article>
                     {/* <img src="/images/Frames.svg" alt="" /> */}
@@ -19,7 +19,7 @@ export default function Home() {
 
                 <div className="content-container">
                     <div className="content-header">
-                        <h1>Featured Courses</h1>
+                        <h1>Upcoming Courses</h1>
                     </div>
                     <div className="content">
                         {
@@ -45,8 +45,9 @@ function Course({data}: {data: { title: string, description: string, cover: stri
                 <h1>{data.title}</h1>
                 <p>{data.description}</p>
                 <div className="cta">
-                    <h3>${data.price}</h3>
-                    <button>Enroll Now</button>
+                    <h3>$_._</h3>
+                    {/* <h3>${data.price}</h3> */}
+                    {/* <button>Enroll Now</button> */}
                 </div>
             </div>
         </div>

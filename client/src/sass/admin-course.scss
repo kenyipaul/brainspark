@@ -1,9 +1,12 @@
 @mixin basicStyles{
+    width: 100%;
     display: flex;
-    padding: 2rem 3rem;
+    padding: 2rem;
+    max-width: 550px;
     align-items: center;
     justify-content: center;
     background-color: #fff;
+    border-radius: 1rem;
 }
 
 @mixin inputStyles{
@@ -12,7 +15,7 @@
     font-size: 1em;
     background: none;
     border-radius: .6rem;
-    border: 2px solid #a9a9a9;
+    border: 1px solid #ccc;
 }
 
 @mixin buttonStyles{
@@ -47,15 +50,27 @@
 
 .card{
     box-shadow: 5px 5px 20px #71717124;
-    img{width: 100%;}
+    border-radius: 1rem;
+    overflow: hidden;
+    
+    .image{
+        aspect-ratio: 16/9;
+        background-position: center;
+        background-size: cover;
+    }
 
     .card-content{
         padding: 1rem;
         background-color: #fff;
 
-        p{padding: 1rem 0rem;}
+        h3{
+            font-size: 1.5rem;
+        }
+
+        p{padding: .4rem 0rem;}
 
         article{
+            padding-top: .8rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-gap: 1rem;
@@ -89,7 +104,7 @@
     position: absolute;
     align-items: center;
     justify-content: center;
-    background-color: #00000070;
+    background-color: #000000e1;
     animation: upwards 1s ease-in-out;
 
     @keyframes upwards {
@@ -116,7 +131,6 @@
         gap: 1rem;
         width: 100%;
         display: grid;
-        max-width: 450px;
 
         .input-area-group {
             gap: .5rem;
@@ -142,12 +156,13 @@
             }
         }
         
-        button {@include buttonStyles;}
+        button {@include buttonStyles;        }
     }
 }
 
 #form-section-2{
     @include basicStyles;
+    
 
     .form {
         gap: 1rem;
@@ -160,12 +175,9 @@
             .image-holder{
                 display: flex;
                 margin-bottom: 1rem;
-                align-items: center;
                 border-radius: 10px;
-                padding: 3rem 10rem;
-                justify-content: center;
                 border: 2px solid #a9a9a9;
-
+                
                 input[type="file"]{display: none;}
                 
                 label[for="imageUpload"] {
@@ -174,6 +186,8 @@
                     cursor: pointer;
                     text-align: center;
                     color: #4e4e4e;
+                    padding: 2rem;
+                    
                 }
             }
             
@@ -184,7 +198,15 @@
                 flex-direction: column;
                 
                 label {font-size: 1.1em;}
-                input{@include inputStyles;}
+                input, textarea{@include inputStyles;}
+            }
+
+            textarea{
+                @include inputStyles;
+                resize: none;
+            }
+            button{
+            margin-top: 1rem;
             }
         }
     }

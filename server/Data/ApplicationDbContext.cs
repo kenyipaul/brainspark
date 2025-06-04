@@ -15,6 +15,8 @@ namespace WebApiBackend.Data // IMPORTANT: Replace 'YourProjectName' with your a
         // This property will map to a 'Users' table in your MySQL database.
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Course> Courses { get; set; }
+
         // You can override OnModelCreating to configure your model further,
         // for example, to define more complex relationships, indexes, or default values.
         protected override void OnModelCreating(ModelBuilder modelBuilder)

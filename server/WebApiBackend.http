@@ -13,6 +13,19 @@ Content-Type: application/json
 DELETE  http://localhost:5112/users/4
 
 ###
+PUT http://localhost:5112/users/29
+Content-Type: application/json
+
+{
+  "FirstName": "Joy",
+  "LastName": "Doe",
+  "Email": "j@gmail.com"
+}
+
+###
+GET  http://localhost:5112/courses/user/31
+
+###
 GET  http://localhost:5112/users
 
 ###
@@ -21,4 +34,16 @@ Content-Type: application/json
 
 {
     "NewPassword": "newpassword456"
+}
+
+###
+POST http://localhost:5112/courses
+Content-Type: application/json
+
+{
+  "Name": "Introduction to Programming",
+  "Description": "A beginner's course on programming concepts.",
+  "ImageUrl": "Programming",
+  "Price": 99,
+  "Link": "https://www.example.com/programming-course"
 }

@@ -1,13 +1,60 @@
+import Axios from "axios"
+import { useRef, useEffect, useState } from "react";
 import "../../sass/user-dashboard.scss";
 
+interface UserType {
+  authorized: boolean;
+  data: {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
+}
+
 export default function Security() {
+  const newPasswordRef = useRef<HTMLInputElement | null>(null);
+
+  const [user, setUser] = useState<UserType>({
+    authorized: false,
+    data: { id: "", firstName: "", lastName: "", email: "" },
+  });
+
+  useEffect(() => {
+    let storedData: unknown = sessionStorage.getItem("_user_data");
+
+    if (storedData == null) {
+      storedData = {} as object;
+    } else {
+      storedData = JSON.parse(storedData as string);
+    }
+
+    setUser(storedData);
+  }, []);
+
+
+  const updateData = () => {
+    const newPassword = newPasswordRef.current!.value;
+
+    Axios({
+      method: "PUT",
+      url: `http://localhost:5112/users/${user.data.id}/password`,
+      data: {
+        NewPassword: newPassword,
+      }
+    }).then((response) => {
+      alert(response.data)
+      window.location.reload();
+    });
+  };
+
   return (
     <div id="account">
       <div className="account-info">
         <div className="account-profile"></div>
         <div className="account-names">
-          <h2>Jane Doe</h2>
-          <h3>John@gmail.com</h3>
+          <h2>{user?.data.firstName + " " + user?.data.lastName}</h2>
+          <h3>{user?.data.email}</h3>
         </div>
       </div>
 
@@ -16,15 +63,15 @@ export default function Security() {
           <h2>Change password</h2>
           <div className="group">
             <div className="form-group">
-              <label htmlFor="old password">Old Password</label>
-              <input type="text" id="first-name" />
+              <label htmlFor="old password">New Password</label>
+              <input type="password" id="password" />
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="new password">New Password</label>
-            <input type="email" id="email" />
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" ref={newPasswordRef} />
           </div>
-          <button type="submit">Change Password</button>
+          <button type="button" onClick={updateData}>Change Password</button>
         </form>
       </div>
     </div>
