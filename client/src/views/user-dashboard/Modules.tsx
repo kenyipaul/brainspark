@@ -1,17 +1,27 @@
-import { useState } from 'react';
-import { courseModules } from './CourseModule';
+// import { useState } from 'react';
+// import { courseModules } from './CourseModule';
 import '../../sass/Modules.scss';
+import { useNavigate } from "react-router-dom";
 
 function ModuleContent() {
-  const [openModule, setOpenModule] = useState<number | null>(null);
+  // const [openModule, setOpenModule] = useState<number | null>(null);
 
-  const toggleModule = (index: number) => {
-    setOpenModule(openModule === index ? null : index);
-  };
-
+  // const toggleModule = (index: number) => {
+  //   setOpenModule(openModule === index ? null : index);
+  // };
+  const navigate = useNavigate();
   return (
         <div className="container-course">
-          <h1 className='title'>Welcome To your Course</h1>
+          <div className="heading">
+            <div className='arrow-left' >
+              <img src="\images\chevron-left-svgrepo-com.svg" alt="" className="image" onClick={() => navigate("/user/mycourses")}/>
+            </div>
+            <div className="heading-text">
+              <h2 className="head2">Course Content</h2>
+              <h4 className="head4">current course</h4>
+            </div>
+          </div>
+
           <iframe
             src="https://www.youtube.com/embed/H3XIJYEPdus?si=Yw50YmhnNB1nO06X"
             title="YouTube video player"
@@ -19,11 +29,9 @@ function ModuleContent() {
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
-            className='video'
+            className="video"
           ></iframe>
-          <h2>Course Content</h2>
-          <h4>current course</h4>
-          <div className='container'>
+          {/* <div className='container'>
             <h5>Roadmap</h5>
             {courseModules.map((module: { id: number; title: string; content: string }, index:number) => (
               <div key={module.id} className='context-item'>
@@ -43,7 +51,7 @@ function ModuleContent() {
                 )}
                 </div>
             ))}
-            </div>
+          </div> */}
         </div>
   );
 }
