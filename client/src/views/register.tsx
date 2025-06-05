@@ -17,6 +17,27 @@ export default function Register() {
         const email = emailRef.current!.value;
         const password = passwordRef.current!.value;
 
+        if (!firstName || !lastName || !email || !password) {
+            alert("Please fill in all fields.");
+            return;
+        }
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            return;
+        }
+        if (!email.includes("@") || !email.includes(".")) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        if (!/^[a-zA-Z]+$/.test(firstName) || !/^[a-zA-Z]+$/.test(lastName)) {
+            alert("First and last names must contain only letters.");
+            return;
+        }
+        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/.test(password)) {
+            alert("Password must contain at least one uppercase letter, one lowercase letter, and one number.");
+            return;
+        }
+        
         Axios({
             method: "POST",
             url: "http://localhost:5112/signup",

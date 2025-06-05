@@ -33,8 +33,37 @@ export default function Security() {
   }, []);
 
 
-  const updateData = () => {
+  interface UpdateDataEvent extends React.MouseEvent<HTMLButtonElement> {
+    target: HTMLButtonElement & {
+      form: HTMLFormElement & {
+        confirmPassword: HTMLInputElement;
+      };
+    };
+  }
+
+  const updateData = (e: UpdateDataEvent) => {
     const newPassword = newPasswordRef.current!.value;
+    const confirmPassword = e.target.form.confirmPassword.value;
+
+    if (!newPassword) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    if (newPassword.length < 6) {
+      alert("Password must be at least 6 characters long.");
+      return;
+    }
+    
+    if (newPassword.length > 20) {
+      alert("Password must be less than 20 characters long.");
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
 
     Axios({
       method: "PUT",
@@ -42,7 +71,7 @@ export default function Security() {
       data: {
         NewPassword: newPassword,
       }
-    }).then((response) => {
+    }).then((response: { data: string }) => {
       alert(response.data)
       window.location.reload();
     });
@@ -64,12 +93,12 @@ export default function Security() {
           <div className="group">
             <div className="form-group">
               <label htmlFor="old password">New Password</label>
-              <input type="password" id="password" />
+              <input type="password" id="password" ref={newPasswordRef}/>
             </div>
           </div>
           <div className="form-group">
             <label htmlFor="confirmPassword">Confirm Password</label>
-            <input type="password" id="confirmPassword" ref={newPasswordRef} />
+            <input type="password" id="confirmPassword"  />
           </div>
           <button type="button" onClick={updateData}>Change Password</button>
         </form>

@@ -36,7 +36,7 @@ export default function Payment() {
         storedData = JSON.parse(storedData as string);
       }
 
-      setUser(storedData);
+      setUser(storedData as UserType);
     }, []);
 
     const confirmPayment = () => {
@@ -45,6 +45,27 @@ export default function Payment() {
         const cardNumber = cardNumberRef.current!.value;
         const expiry = expiryRef.current!.value;
         const cvv = cvvRef.current!.value;
+
+        if (!email || !cardHolder || !cardNumber || !expiry || !cvv) {
+            alert("Please fill in all fields.");
+            return;
+        }
+        if (!email.includes("@") || !email.includes(".")) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+        if (cardNumber.length !== 19 || !/^\d{4} - \d{4} - \d{4} - \d{4}$/.test(cardNumber)) {
+            alert("Please enter a valid card number in the format XXXX - XXXX - XXXX - XXXX.");
+            return;
+        }
+        if (!/^(0[1-9]|1[0-2])\/\d{4}$/.test(expiry)) {
+            alert("Please enter a valid expiry date in the format MM/YYYY.");
+            return;
+        }
+        if (cvv.length !== 3 || !/^\d{3}$/.test(cvv)) {
+            alert("Please enter a valid CVV.");
+            return;
+        }
 
         const tmp_url = location.pathname.split("/");
         const courseId = tmp_url[tmp_url.length - 1];

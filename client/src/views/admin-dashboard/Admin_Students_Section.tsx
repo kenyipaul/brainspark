@@ -94,7 +94,6 @@ const RegisterStudent = ({ Close }: RegisterStudentProps) => {
   return (
     <div className='flaoting-section' onClick={() => { Close() }}>
           <div id="form-section" onClick={(e) => e.stopPropagation()}>
-            {/* <img src="/images/close-bold-svgrepo-com.svg" alt="" onClick={Close} style={{width:"3rem",height:"3rem"}}/> */}
             <div className="form">
                 <h1>Create Account</h1>
                 <div className="input-area-group">

@@ -8,7 +8,7 @@ export default function UserDashboard() {
 
     const logout = () => {
       sessionStorage.removeItem("_user_data")
-      window.location.href = "/login"
+      window.location.href = "/"
     }
 
     return (

@@ -81,7 +81,7 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path: "/Course/videos",
+                path: "/course/video/:id",
                 element: <ModuleContent/>
             },
             {

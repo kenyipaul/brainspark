@@ -7,13 +7,26 @@ export default function Navbar() {
     const navigate = useNavigate()
     const [menuState, setMenuState] = useState(false);
 
-    const [user, setUser] = useState({
+    type UserData = {
+        id: string;
+        firstName: string;
+        lastName: string;
+        email: string;
+        role?: string; // Optional, in case role is not always present
+    };
+
+    type UserState = {
+        authorized: boolean;
+        data: UserData;
+    };
+
+    const [user, setUser] = useState<UserState>({
         authorized: false,
-        data: {}
+        data: { id: "", firstName: "", lastName: "", email: "" }
     })
 
     useEffect(() => {
-        let userData = sessionStorage.getItem("_user_data");
+        const userData = sessionStorage.getItem("_user_data");
 
         if (userData !== null) {
             const data = JSON.parse(userData);
@@ -22,6 +35,19 @@ export default function Navbar() {
             setUser({authorized: false, data: { id: "", firstName: "", lastName: "", email: "" }})
         }
     }, [location])
+
+    const handleNavigate = () => {
+
+        if (user.data.role === "Admin") {
+            navigate("/admin");
+        }
+        else{
+            navigate("/user");
+        }
+    }
+
+    
+
 
     return (
         <nav id="navbar">
@@ -37,7 +63,7 @@ export default function Navbar() {
             <section>
                 {
                     user.authorized ? 
-                    <div onClick={() => navigate("/user")} className="user-profile">
+                    <div onClick={handleNavigate} className="user-profile">
                         <div className="profile"><p>{user.data.firstName[0] + "" + user.data.lastName[0]}</p></div>
                         <h1>Hi {user.data.lastName}!</h1>
                     </div>
@@ -63,7 +89,7 @@ export default function Navbar() {
                     </div>
                     {
                         user.authorized ?
-                        <div onClick={() => navigate("/user")} className="user-profile-mobile">
+                        <div onClick={handleNavigate} className="user-profile-mobile">
                             <div className="profile"><p>{user.data.firstName[0] + "" + user.data.lastName[0]}</p></div>
                             <h1>Hi {user.data.lastName}!</h1>
                         </div> :

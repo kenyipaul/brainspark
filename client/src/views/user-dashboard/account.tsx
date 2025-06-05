@@ -29,10 +29,12 @@ export default function Account() {
   const [email, setEmail] = useState("")
 
   useEffect(() => {
-    setFirstName(user.data.firstName)
-    setLastName(user.data.lastName)
-    setEmail(user.data.email)
-  }, [user, setUser])
+      if (user.data) {
+        setFirstName(user?.data.firstName)
+        setLastName(user?.data.lastName)
+        setEmail(user?.data.email)
+      }
+    }, [user, setUser])
 
 
   useEffect(() => {
@@ -44,13 +46,35 @@ export default function Account() {
       storedData = JSON.parse(storedData as string);
     }
 
-    setUser(storedData);
+    setUser(storedData as UserType);
   }, []);
 
   const updateData = () => {
     const firstName = firstNameRef.current!.value;
     const lastName = lastNameRef.current!.value;
     const email = emailRef.current!.value;
+
+    if (!firstName || !lastName || !email) {
+      alert("Please fill in all fields.");
+      return;
+    }
+    if (!email.includes("@") || !email.includes(".")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    if (firstName.length < 3 || firstName.length > 20) {
+      alert("First name must be between 3 and 20 characters long.");
+      return;
+    }
+    if (lastName.length < 3 || lastName.length > 20) {
+      alert("Last name must be between 3 and 20 characters long.");
+      return;
+    }
+    if (!/^[a-zA-Z]+$/.test(firstName) || !/^[a-zA-Z]+$/.test(lastName)) {
+      alert("First and last names must contain only letters.");
+      return;
+    }
+
 
     Axios({
       method: "PUT",
@@ -61,8 +85,9 @@ export default function Account() {
         Email: email,
       }
     }).then((response) => {
+      alert("Profile updated successfully!");      
       sessionStorage.setItem("_user_data", JSON.stringify(response.data))
-      window.location.reload();
+      
     });
   };
 
@@ -86,8 +111,8 @@ export default function Account() {
       <div className="account-info">
         <div className="account-profile"></div>
         <div className="account-names">
-          <h2>{user?.data.firstName + " " + user?.data.lastName}</h2>
-          <h3>{user?.data.email}</h3>
+          <h2>{firstName + " " + lastName}</h2>
+          <h3>{email}</h3>
         </div>
       </div>
 

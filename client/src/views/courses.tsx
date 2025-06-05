@@ -5,8 +5,16 @@ import { useNavigate } from "react-router-dom";
 export default function Courses() {
 
     const navigate = useNavigate();
-    const [courses, setCourses] = useState([])
-    const [backupCourses, setBackupCourses] = useState([])
+    type Course = {
+        id: string;
+        name: string;
+        description: string;
+        imageUrl: string;
+        price: number;
+    };
+
+    const [courses, setCourses] = useState<Course[]>([])
+    const [backupCourses, setBackupCourses] = useState<Course[]>([])
 
     useEffect(() => {
         Axios({
@@ -48,7 +56,7 @@ export default function Courses() {
                 {
                     courses.map((course, key) => {
                         return (
-                            <div className="course">
+                            <div className="course" key={key}>
                                 <div className="cover" style={{
                                     backgroundImage: `url(${course.imageUrl})`
                                 }}></div>

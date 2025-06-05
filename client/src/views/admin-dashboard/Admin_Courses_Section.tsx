@@ -1,10 +1,10 @@
 import CourseAddition from "../../components/CourseAddition";
-// import {courseData} from "../../../Data/cardsData"
 import "../../sass/admin-course.scss";
 import { useState, useEffect } from "react";
 import Axios from "axios";
 
 interface CourseType {
+  id: string | number;
   name: string,
   price: number,
   imageUrl: string,
@@ -44,6 +44,7 @@ const AdminCoursesSection = () => {
             courseTitle={data.name}
             coursePrice={data.price}
             courseSubTitle={data.description}
+            courseId={data.id} // Assuming each course has a unique 'id' field
           />
         ))}
       </main>
@@ -53,11 +54,13 @@ const AdminCoursesSection = () => {
 
 export default AdminCoursesSection;
 
+
 type CardProps = {
   courseImage: string;
   courseTitle: string;
   courseSubTitle: string;
   coursePrice: number;
+  courseId: string | number;
 };
 
 const Card = ({
@@ -65,7 +68,24 @@ const Card = ({
   courseTitle,
   coursePrice,
   courseSubTitle,
+  courseId,
 }: CardProps) => {
+
+  const handleDelete = () => {
+    if (!confirm(`Are you sure you want to delete the course: ${courseTitle}?`)) {
+      return; // Exit if the user cancels the deletion
+    }
+
+    Axios({
+      method: "DELETE",
+      url: `http://localhost:5112/courses/${courseId}`,
+    }).then((response) => {
+      console.log("Course deleted:", response.data);
+      window.location.reload(); 
+    }).catch((error) => {
+      console.error("Error deleting course:", error);
+    });
+  };
   return (
     <div className="card">
       <div
@@ -76,10 +96,10 @@ const Card = ({
         <h3>{courseTitle}</h3>
         <p>{coursePrice}$</p>
         <p>{courseSubTitle}</p>
-        <article>
-          <button>Edit</button>
-          <button>Delete</button>
-        </article>
+          <button onClick={handleDelete}>Delete</button>
+        {/* <article>
+          <button onClick={handleEdit}>Edit</button>
+        </article> */}
       </div>
     </div>
   );

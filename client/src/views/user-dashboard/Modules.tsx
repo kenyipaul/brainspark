@@ -1,7 +1,8 @@
 // import { useState } from 'react';
 // import { courseModules } from './CourseModule';
+import { useState, useEffect } from 'react';
 import '../../sass/Modules.scss';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function ModuleContent() {
   // const [openModule, setOpenModule] = useState<number | null>(null);
@@ -9,7 +10,19 @@ function ModuleContent() {
   // const toggleModule = (index: number) => {
   //   setOpenModule(openModule === index ? null : index);
   // };
-  const navigate = useNavigate();
+  const navigate = useNavigate()
+  const [currentVideo, setCurrentVideo] = useState("");
+
+  useEffect(() => {
+
+    const currentVideo = sessionStorage.getItem("current_video")
+
+    if (currentVideo !== null) {
+      setCurrentVideo(currentVideo)
+    }
+
+  }, [])
+
   return (
         <div className="container-course">
           <div className="heading">
@@ -23,7 +36,7 @@ function ModuleContent() {
           </div>
 
           <iframe
-            src="https://www.youtube.com/embed/H3XIJYEPdus?si=Yw50YmhnNB1nO06X"
+            src={currentVideo || ""}
             title="YouTube video player"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

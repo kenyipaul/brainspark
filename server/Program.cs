@@ -314,6 +314,8 @@ app.MapGet("/courses/user/{userId}", async (int userId, ApplicationDbContext dbC
     return Results.Ok(enrolledCourses);
 });
 
+
+
 app.Run();
 
 public record SignupRequest(string FirstName, string LastName, string Email, string Password);
