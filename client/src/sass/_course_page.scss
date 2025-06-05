@@ -70,11 +70,15 @@
                 p {
                     color: #555;
                     margin: 1rem 0;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    overflow: hidden;
                 }
                 
                 h1 {
                     color: $primary-theme;
-                    font-size: clamp(1.5em, 5vw, 1.8em);
+                    font-size: clamp(1.3em, 5vw, 1.6em);
                 }
 
                 .bottom-bar {

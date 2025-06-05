@@ -30,13 +30,13 @@ export default function Courses() {
         const searchInput = event.target.value.toLowerCase();
 
         if (searchInput !== "") {
-            const results = courses.filter((data) => {
-                if (searchInput.indexOf(data.name.toLowerCase()) || searchInput.indexOf(data.description.toLowerCase())) {
-                    return data
-                }
-            })
+
+            const searchResults = courses.filter((course) => {
+                return course.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+                    course.description.toLowerCase().includes(searchInput.toLowerCase());
+            });
             
-            setCourses(results)
+            setCourses(searchResults)
         } else {
             setCourses(backupCourses)
         }
@@ -53,6 +53,18 @@ export default function Courses() {
             </div>
 
             <div className="course-page-content">
+                <div className="course">
+                    <div className="cover" style={{ }}></div>
+                    <div className="info">
+                        <h1>DATA STRUCTURES AND ALGORITHMS</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum facere, magnam laudantium fugiat blanditiis sequi aspernatur ipsam quasi laboriosam.</p>
+                        <div className="bottom-bar">
+                            <h3>$35</h3>
+                            <button onClick={() => navigate(`/payment/3`)}>Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+
                 {
                     courses.map((course, key) => {
                         return (

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 
 export default function Home() {
@@ -8,6 +9,9 @@ export default function Home() {
                     <article>
                         <h1>What do you want to learn today?</h1>
                         <h3>Continue your learning journey with thousands of courses from world-class instructors</h3>
+                        <Link to="/courses">
+                            <button>Explore our courses</button>
+                        </Link>
                         {/* <div className="input-area">
                             <input type="text" placeholder="Search for courses" id="" />
                             <button>Search</button>
